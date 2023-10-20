@@ -6,7 +6,8 @@
     "lib": ["esnext", "dom"]
   },
   "ts-node": {
-    "esm": true
+    "esm": true,
+    "swc": true
   },
   "include": ["src", "scripts"],
   "exclude": ["node_modules"]
