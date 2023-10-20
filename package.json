@@ -5,16 +5,17 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "yarn workspaces foreach --all run build",
+    "build": "npm run build --workspaces",
     "format": "prettier -w .",
     "lint": "eslint \"**/*.{js,ts,jsx,tsx}\"",
     "spellcheck": "cspell \"**\" --no-progress",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "es:scrape": "npm run es:scrape --workspace es-scraper",
+    "es:sync": "npm run es:sync --workspace es-scraper"
   },
-  "packageManager": "yarn@4.0.0-rc.50",
   "devDependencies": {
     "@types/eslint": "^8.44.2",
-    "@types/mdast": "patch:@types/mdast@npm%3A3.0.12#~/.yarn/patches/@types-mdast-npm-3.0.12-e8f7ab24f4.patch",
+    "@types/mdast": "^4.0.2",
     "@types/node": "^18.16.2",
     "@typescript-eslint/eslint-plugin": "^5.59.1",
     "@typescript-eslint/parser": "^5.59.1",
@@ -31,8 +32,5 @@
     "ts-node": "^10.9.1",
     "tsconfig-jc": "^2.3.1",
     "typescript": "^5.0.4"
-  },
-  "resolutions": {
-    "@types/mdast@npm:^3.0.0": "patch:@types/mdast@npm%3A3.0.12#~/.yarn/patches/@types-mdast-npm-3.0.12-e8f7ab24f4.patch"
   }
 }

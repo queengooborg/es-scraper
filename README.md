@@ -5,8 +5,8 @@ Check MDN page structures
 ## Installation
 
 ```bash
-yarn
-yarn build
+npm i
+npm run build
 ```
 
 We don't have an npm publishing yet, although we may in the future.
@@ -14,7 +14,7 @@ We don't have an npm publishing yet, although we may in the future.
 ## Usage
 
 ```bash
-NODE_OPTIONS="--experimental-vm-modules" yarn mdn-checker ../content
+NODE_OPTIONS="--experimental-vm-modules" npm run mdn-checker ../content
 ```
 
 where `../content` is the path to the MDN content repository.
@@ -22,11 +22,11 @@ where `../content` is the path to the MDN content repository.
 To run the ES scraper:
 
 ```bash
-yarn es:scrape
+npm run es:scrape
 ```
 
 To sync the ES spec with upstream:
 
 ```bash
-yarn es:sync
+npm run es:sync
 ```

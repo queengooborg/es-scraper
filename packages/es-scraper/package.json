@@ -21,7 +21,7 @@
     ".": "./dist/index.js"
   },
   "scripts": {
-    "build": "tsc -p tsconfig.build.json && yarn es:sync && yarn es:scrape",
+    "build": "tsc -p tsconfig.build.json && npm run es:sync && npm run es:scrape",
     "watch": "tsc -p tsconfig.build.json --watch",
     "es:sync": "node --loader=ts-node/esm --no-warnings=ExperimentalWarning ./scripts/sync.ts",
     "es:scrape": "node --loader=ts-node/esm --no-warnings=ExperimentalWarning ./scripts/scrape.ts"

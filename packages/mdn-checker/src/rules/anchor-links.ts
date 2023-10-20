@@ -4,7 +4,7 @@ import * as Cheerio from "cheerio";
 import { slugToFilePath } from "../utils.js";
 import { contentPath, type FileContext } from "../context.js";
 
-// Remember to run yarn build files/en-us/web/javascript/**/*.md
+// Remember to run npm run build files/en-us/web/javascript/**/*.md
 
 async function* getFiles(dir: string): AsyncGenerator<[string, string]> {
   const dirents = await FS.readdir(dir, { withFileTypes: true });
