@@ -1,25 +1,12 @@
-import "./polyfill.js";
+import "../src/polyfill.js";
 
-import FS from "node:fs/promises";
-import * as Cheerio from "cheerio";
-import { generatedPath } from "../src/utils.js";
-import { collectIntrinsics } from "./intrinsics.js";
-import { collectEarlyErrors } from "./early-errors.js";
+import fs from "node:fs/promises";
+import type { Section } from "../src/types.js";
+import { generatedPath, getSpec } from "../src/utils.js";
+import { collectIntrinsics } from "../src/intrinsics.js";
+import { collectEarlyErrors } from "../src/early-errors.js";
 
-export type Section = {
-  title: string;
-  id: string;
-  children: Section[];
-};
-
-export const $ = await FS.readFile(generatedPath("spec.html"))
-  .then((content) => Cheerio.load(content))
-  .catch(() => {
-    console.error(
-      "Could not read ../generated/spec.html file. You may have to run 'npm run es:sync' to download it.",
-    );
-    process.exit(0);
-  });
+const $ = await getSpec();
 
 function buildTOC(root = $(":root > body")) {
   return root
@@ -43,18 +30,18 @@ const intrinsics = collectIntrinsics(toc);
 const earlyErrors = collectEarlyErrors(toc);
 
 async function writeWithBackup(path: string, content: string) {
-  const old = await FS.readFile(generatedPath(path), "utf8").catch(() => "");
+  const old = await fs.readFile(generatedPath(path), "utf8").catch(() => "");
   if (old === content) {
     console.log(`No change to ${path}`);
   } else if (old !== "") {
-    await FS.rename(
+    await fs.rename(
       generatedPath(path),
       generatedPath(path.replace(/\.\w+$/, ".bak$&")),
     );
-    await FS.writeFile(generatedPath(path), content);
+    await fs.writeFile(generatedPath(path), content);
     console.log(`Updated ${path}. Backup saved; remember to compare the diff.`);
   } else {
-    await FS.writeFile(generatedPath(path), content);
+    await fs.writeFile(generatedPath(path), content);
     console.log(`Created ${path}`);
   }
 }

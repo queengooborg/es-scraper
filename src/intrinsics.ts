@@ -1,4 +1,4 @@
-import { assert } from "../src/utils.js";
+import { assert, getSpec } from "./utils.js";
 import type {
   JSGlobal,
   JSClass,
@@ -11,7 +11,9 @@ import type {
   Parameters,
   DataAttributes,
 } from "../src/types.js";
-import { type Section, $ } from "./scrape.js";
+import { type Section } from "./types.js";
+
+const $ = await getSpec();
 
 function getBareSection(section: Section): Section {
   assert(

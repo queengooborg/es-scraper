@@ -74,3 +74,9 @@ export type JSFunction = {
 };
 
 export type JSGlobal = JSNamespace | JSClass | JSGlobalProperty | JSFunction;
+
+export type Section = {
+  title: string;
+  id: string;
+  children: Section[];
+};

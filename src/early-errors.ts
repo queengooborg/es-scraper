@@ -1,6 +1,8 @@
-import { assert } from "../src/utils.js";
-import { type Section, $ } from "./scrape.js";
-import type { getEarlyErrors } from "../src/index.js";
+import { assert, getSpec } from "./utils.js";
+import { type Section } from "./types.js";
+import type { getEarlyErrors } from "./index.js";
+
+const $ = await getSpec();
 
 type EarlyErrorRecord = Awaited<ReturnType<typeof getEarlyErrors>>;
 
