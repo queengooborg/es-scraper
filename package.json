@@ -1,21 +1,41 @@
 {
+  "name": "es-scraper",
+  "description": "Scrape structured data from the ES spec",
+  "version": "0.0.0",
+  "author": "Joshua Chen <sidachen2003@gmail.com>",
+  "license": "MIT",
   "type": "module",
-  "private": true,
-  "workspaces": [
-    "packages/*"
-  ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jc-verse/mdn-checker.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jc-verse/mdn-checker/issues"
+  },
+  "homepage": "https://jc-verse.github.io/mdn-checker/",
+  "exports": {
+    ".": "./dist/index.js"
+  },
   "scripts": {
-    "build": "npm run build --workspaces",
+    "build": "tsc -p tsconfig.build.json && npm run sync && npm run scrape",
+    "ts-node": "node --loader=ts-node/esm --no-warnings=ExperimentalWarning",
     "format": "prettier -w .",
     "lint": "eslint \"**/*.{js,ts,jsx,tsx}\"",
     "spellcheck": "cspell \"**\" --no-progress",
     "prepare": "husky install",
-    "es:scrape": "npm run es:scrape --workspace es-scraper",
-    "es:sync": "npm run es:sync --workspace es-scraper"
+    "watch": "tsc -p tsconfig.build.json --watch",
+    "sync": "npm run ts-node ./scripts/sync.ts",
+    "scrape": "npm run ts-node ./scripts/scrape.ts"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.12"
   },
   "devDependencies": {
     "@types/eslint": "^8.44.2",
-    "@types/mdast": "^4.0.2",
     "@types/node": "^18.16.2",
     "@typescript-eslint/eslint-plugin": "^5.59.1",
     "@typescript-eslint/parser": "^5.59.1",
@@ -27,7 +47,6 @@
     "eslint-plugin-import": "^2.27.5",
     "husky": "^8.0.3",
     "lint-staged": "^13.2.2",
-    "mdn-checker": "workspace:*",
     "prettier": "^2.8.8",
     "prettier-config-jc": "^2.3.0",
     "ts-node": "^10.9.1",
