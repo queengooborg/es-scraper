@@ -1,6 +1,6 @@
 import FS from "node:fs/promises";
 import Path from "node:path";
-import { generatedPath } from "../src/utils.js";
+import { generatedPath } from "../lib/utils.js";
 
 const specFilePath = generatedPath("spec.html");
 

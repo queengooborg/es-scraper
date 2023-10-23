@@ -14,6 +14,6 @@
     "esm": true,
     "swc": true
   },
-  "include": ["src", "scripts"],
+  "include": ["lib", "scripts"],
   "exclude": ["node_modules"]
 }

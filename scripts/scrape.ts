@@ -1,10 +1,10 @@
-import "../src/polyfill.js";
+import "../lib/polyfill.js";
 
 import fs from "node:fs/promises";
-import type { Section } from "../src/types.js";
-import { generatedPath, getSpec } from "../src/utils.js";
-import { collectIntrinsics } from "../src/intrinsics.js";
-import { collectEarlyErrors } from "../src/early-errors.js";
+import type { Section } from "../lib/types.js";
+import { generatedPath, getSpec } from "../lib/utils.js";
+import { collectIntrinsics } from "../lib/intrinsics.js";
+import { collectEarlyErrors } from "../lib/early-errors.js";
 
 const $ = await getSpec();
 
